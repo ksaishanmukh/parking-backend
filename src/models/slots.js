@@ -8,8 +8,8 @@ export class Slot {
     }
 
     static async getSlotsByFloor(mall_id, floor_no) {
-        const [rows] = await pool.query('SELECT slot_no FROM slots WHERE mall_id = ? AND floor_no = ?', [mall_id, floor_no]);
-        return rows.map(row => row.slot_no);
+        const [rows] = await pool.query('SELECT id, is_available, slot_no FROM slots WHERE mall_id = ? AND floor_no = ?', [mall_id, floor_no]);
+        return rows;
     }
     
     static async create(mall_id, floor_no, slot_no, is_available) {

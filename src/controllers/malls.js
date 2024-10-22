@@ -1,13 +1,9 @@
 import Mall from '../models/malls.js';
 
 export default {
-    async getAll(res) {
+    async getAll(req,res) {
         try {
             const malls = await Mall.getAllLocations();
-            console.log(malls);
-            if(!malls) {
-                return res.status(404).send({ error: 'Malls not found' });
-            }
             res.send(malls);
         } catch (error) {
             res.status(400).send({ error: error.message });
